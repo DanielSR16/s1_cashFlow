@@ -18,6 +18,9 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
@@ -28,6 +31,8 @@ public class flujoController implements Initializable {
     CategoriaDAO categoriadao =  new CategoriaDAO();
     SubCategoriaDAO subcategoriaDAO = new SubCategoriaDAO();
     FlujoEfectivoDAO flujoEfectivoDAO  = new FlujoEfectivoDAO();
+    long now = System.currentTimeMillis();
+    Date sqlDate = new Date(now);
 
     @FXML
     private TableView<FlujoEfectivo> tabla;
@@ -63,6 +68,11 @@ public class flujoController implements Initializable {
     private ComboBox<String> comboBoxSubCategoria1;
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private DatePicker fecha;
+
+
     @FXML
     void entradaOnMouseClicked(MouseEvent event) {
         if(checkBoxSalida.isSelected()){
@@ -110,9 +120,9 @@ public class flujoController implements Initializable {
     @FXML
     void guardarClicked(MouseEvent event) {
         if(textFieldMonto.getLength()>0 && textFieldDescripcion.getLength()>0 && comboBoxSubCategoria1.getSelectionModel().isEmpty() == false && comboBoxCategoria.getSelectionModel().isEmpty() == false){
-            long now = System.currentTimeMillis();
-            Date sqlDate = new Date(now);
-            FlujoEfectivo  flujoefectivo = new FlujoEfectivo(Float.parseFloat(textFieldMonto.getText()),textFieldDescripcion.getText(),sqlDate,comboBoxCategoria.getSelectionModel().getSelectedItem(),comboBoxSubCategoria1.getSelectionModel().getSelectedItem());
+            Date date = Date.valueOf(LocalDate.of(fecha.getValue().getYear(), fecha.getValue().getMonth(), fecha.getValue().getDayOfMonth()));
+
+            FlujoEfectivo  flujoefectivo = new FlujoEfectivo(Float.parseFloat(textFieldMonto.getText()),textFieldDescripcion.getText(),date,comboBoxCategoria.getSelectionModel().getSelectedItem(),comboBoxSubCategoria1.getSelectionModel().getSelectedItem());
             flujoEfectivoDAO.insertFlujo(flujoefectivo);
 
             textFieldDescripcion.clear();
@@ -145,6 +155,9 @@ public class flujoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        LocalDate localDate = Instant.ofEpochMilli(sqlDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        fecha.setValue(localDate);
         ObservableList<FlujoEfectivo> flujo =  FXCollections.observableArrayList();
         fechaColum.setCellValueFactory(new PropertyValueFactory<FlujoEfectivo,Date>("fecha"));
         descripcionColum.setCellValueFactory(new PropertyValueFactory<FlujoEfectivo,String>("descripcion"));
@@ -152,6 +165,9 @@ public class flujoController implements Initializable {
         subcategoriaColum.setCellValueFactory(new PropertyValueFactory<FlujoEfectivo,String>("subCategoria"));
         flujo.addAll(flujoEfectivoDAO.getAllFlujoEfectivo());
         tabla.setItems(flujo);
+
+
+
 
 
 
