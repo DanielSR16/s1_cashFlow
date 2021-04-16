@@ -27,7 +27,7 @@ public class UtilidadDAO {
                 statement.setInt(5,utilidad.getSemana());
                 statement.setFloat(6, utilidad.getMonto());
                 statement.setFloat(7, utilidad.getMargen());
-                
+
                 if (statement.executeUpdate() == ACCEPT)
                     resultado = true;
             } catch (SQLException e) {

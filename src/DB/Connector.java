@@ -11,7 +11,7 @@ public Connection getConnectionMySql() {
 		Connection connection = null;
 		String url = "jdbc:mysql://localhost:3307/cashflow?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
 		String user = "root";
-		String password = "danieldaniel.sr";
+		String password = "daniel";
 		
 		try {
 			connection = DriverManager.getConnection(url, user, password);

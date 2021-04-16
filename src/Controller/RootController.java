@@ -18,7 +18,7 @@ public class RootController {
 
     @FXML
     void indicadoresClicked(MouseEvent event) {
-
+        Main.newStage("indicadoresView","Indicadores de dinero");
     }
 
     @FXML

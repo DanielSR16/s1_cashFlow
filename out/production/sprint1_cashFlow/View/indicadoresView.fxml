@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="749.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.indicadoresController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8bb6df" height="200.0" layoutX="14.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" width="390.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8bb6df" height="200.0" layoutX="283.0" layoutY="291.0" stroke="BLACK" strokeType="INSIDE" width="390.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8bb6df" height="200.0" layoutX="14.0" layoutY="510.0" stroke="BLACK" strokeType="INSIDE" width="390.0" />
+      <TextField fx:id="semanaCuentaCobrar" layoutX="144.0" layoutY="99.0" prefHeight="26.0" prefWidth="79.0" />
+      <Text layoutX="228.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUENTA POR COBRAR" wrappingWidth="175.87896728515625">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="324.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BANCO" wrappingWidth="79.2000000000001">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="semanaCuentaPagar" layoutX="410.0" layoutY="317.0" prefHeight="26.0" prefWidth="79.0" />
+      <TextField fx:id="semanaBanco" layoutX="136.0" layoutY="547.0" prefHeight="26.0" prefWidth="79.0" />
+      <Text layoutX="293.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° SEMANA" wrappingWidth="99.0789794921875">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="28.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° SEMANA" wrappingWidth="99.0789794921875">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="28.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° SEMANA" wrappingWidth="99.0789794921875">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="montoCuentaCobrar" layoutX="25.0" layoutY="211.0" prefHeight="38.0" prefWidth="248.0" promptText="MONTO $" />
+      <TextField fx:id="razonCuentaCobrar" layoutX="25.0" layoutY="160.0" prefHeight="38.0" prefWidth="248.0" promptText="RAZON SOCIAL" />
+      <TextField fx:id="montoBanco" layoutX="20.0" layoutY="639.0" prefHeight="38.0" prefWidth="248.0" promptText="MONTO $" />
+      <TextField fx:id="razonBanco" layoutX="20.0" layoutY="588.0" prefHeight="38.0" prefWidth="248.0" promptText="RAZON SOCIAL" />
+      <TextField fx:id="montoCuentaPagar" layoutX="293.0" layoutY="428.0" prefHeight="38.0" prefWidth="248.0" promptText="MONTO $" />
+      <TextField fx:id="razonCuentaPagar" layoutX="293.0" layoutY="377.0" prefHeight="38.0" prefWidth="248.0" promptText="RAZON SOCIAL" />
+      <Button fx:id="guardarCuentaCobrar" layoutX="297.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#guardarCuentaCobrarOnMuseClicked" prefHeight="26.0" prefWidth="92.0" text="GUARDAR" />
+      <Button fx:id="guardarCuentaPagar" layoutX="568.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#guardarCuentaPagarOnMuseClicked" prefHeight="26.0" prefWidth="92.0" text="GUARDAR" />
+      <Button fx:id="guardarBanco" layoutX="297.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#guardarBancoOnMuseClicked" prefHeight="26.0" prefWidth="92.0" text="GUARDAR" />
+      <Text layoutX="507.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUENTA POR PAGAR" wrappingWidth="195.87896728515625">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="errorCobrar" fill="RED" layoutX="259.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="errorPagar" fill="RED" layoutX="539.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="errorBanco" fill="RED" layoutX="259.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>
