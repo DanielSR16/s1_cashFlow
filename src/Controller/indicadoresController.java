@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.IndicadoresDineroDAO;
 import Entities.IndicadoresDinero;
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -105,6 +106,11 @@ IndicadoresDineroDAO indicadoresDAO = new IndicadoresDineroDAO();
         }
 
 
+    }
+
+    @FXML
+    void houseClicked(MouseEvent event) {
+        Main.secondStage.close();
     }
 
 }

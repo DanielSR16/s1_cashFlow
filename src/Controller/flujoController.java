@@ -105,7 +105,7 @@ public class flujoController implements Initializable {
 
 
     @FXML
-    void comboCategoriaOnMouseClicked(MouseEvent event) {
+    void comboSubCategoriaOnMouseClicked(MouseEvent event) {
         if(comboBoxCategoria.getSelectionModel().isEmpty() == false){
             ObservableList<String> subcategoriaBOX = FXCollections.observableArrayList();
             for (int i = 0; i < subcategoriaDAO.getAllSubCategoriabycategoriaPadre(comboBoxCategoria.getSelectionModel().getSelectedItem()).size(); i++) {
@@ -113,9 +113,19 @@ public class flujoController implements Initializable {
             }
             comboBoxSubCategoria1.setItems(subcategoriaBOX);
         }
-
-
     }
+//    @FXML
+//    void comboCategoriaOnMouseClicked(MouseEvent event) {
+//        if(comboBoxCategoria.getSelectionModel().isEmpty() == false){
+//            ObservableList<String> subcategoriaBOX = FXCollections.observableArrayList();
+//            for (int i = 0; i < subcategoriaDAO.getAllSubCategoriabycategoriaPadre(comboBoxCategoria.getSelectionModel().getSelectedItem()).size(); i++) {
+//                subcategoriaBOX.add(subcategoriaDAO.getAllSubCategoriabycategoriaPadre(comboBoxCategoria.getSelectionModel().getSelectedItem()).get(i).getNombre());
+//            }
+//            comboBoxSubCategoria1.setItems(subcategoriaBOX);
+//        }
+//
+//
+//    }
 
     @FXML
     void guardarClicked(MouseEvent event) {

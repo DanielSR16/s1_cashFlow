@@ -60,7 +60,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </CheckBox>
-      <ComboBox fx:id="comboBoxCategoria" layoutX="25.0" layoutY="564.0" onMouseClicked="#comboCategoriaOnMouseClicked" prefHeight="26.0" prefWidth="248.0" promptText="Categoria" />
+      <ComboBox fx:id="comboBoxCategoria" layoutX="25.0" layoutY="564.0" prefHeight="26.0" prefWidth="248.0" promptText="Categoria" />
       <TextField fx:id="textFieldDescripcion" layoutX="25.0" layoutY="602.0" prefHeight="26.0" prefWidth="248.0" promptText="Descripcion" />
       <Button layoutX="415.0" layoutY="674.0" mnemonicParsing="false" onMouseClicked="#guardarClicked" prefHeight="26.0" prefWidth="155.0" style="-fx-background-color: #6A94A1;" text="Guardar">
          <font>
@@ -69,7 +69,7 @@
       </Button>
       <TextField fx:id="textFieldMonto" layoutX="25.0" layoutY="638.0" prefHeight="26.0" prefWidth="146.0" promptText="Monto" />
       <Label layoutX="149.0" layoutY="642.0" text="\$" />
-      <ComboBox fx:id="comboBoxSubCategoria1" layoutX="291.0" layoutY="564.0" prefHeight="26.0" prefWidth="248.0" promptText="Sub-Categoria" />
+      <ComboBox fx:id="comboBoxSubCategoria1" layoutX="291.0" layoutY="564.0" onMouseClicked="#comboSubCategoriaOnMouseClicked" prefHeight="26.0" prefWidth="248.0" promptText="Sub-Categoria" />
       <Label fx:id="errorLabel" layoutX="322.0" layoutY="625.0" textFill="#ff3737">
          <font>
             <Font name="System Bold" size="17.0" />
