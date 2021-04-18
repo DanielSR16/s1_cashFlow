@@ -20,8 +20,7 @@ public class UtilidadDAO {
             String sql = "insert into utilidad (idallingresos,idallegresos,totalingresos,totalegresos,semana,monto,margen) values (?,?,?,?,?,?,?);";
             try {
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, utilidad.getIdallingresos());
-                statement.setString(2, utilidad.getIdallegresos());
+
                 statement.setFloat(3, utilidad.getIngresoTotal());
                 statement.setFloat(4, utilidad.getEgresoTotal());
                 statement.setInt(5,utilidad.getSemana());

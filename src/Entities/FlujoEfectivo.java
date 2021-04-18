@@ -11,7 +11,15 @@ public class FlujoEfectivo {
     private Date fecha;
     private String Categoria;
     private String subCategoria;
-    
+    private int idClasificacion;
+    private int numSemana;
+
+    public FlujoEfectivo(float monto, int idClasificacion, int numSemana) {
+        this.monto = monto;
+        this.idClasificacion = idClasificacion;
+        this.numSemana = numSemana;
+    }
+
     public FlujoEfectivo() {}
 
     public FlujoEfectivo(float monto, String descripcion, Date fecha, String categoria, String subCategoria) {
@@ -56,5 +64,30 @@ public class FlujoEfectivo {
 
     public void setSubCategoria(String subCategoria) {
         this.subCategoria = subCategoria;
+    }
+
+    public int getIdClasificacion() {
+        return idClasificacion;
+    }
+
+    public void setIdClasificacion(int idClasificacion) {
+        this.idClasificacion = idClasificacion;
+    }
+
+    public int getNumSemana() {
+        return numSemana;
+    }
+
+    public void setNumSemana(int numSemana) {
+        this.numSemana = numSemana;
+    }
+
+    @Override
+    public String toString() {
+        return "FlujoEfectivo{" +
+                "monto=" + monto +
+                ", idClasificacion=" + idClasificacion +
+                ", numSemana=" + numSemana +
+                '}';
     }
 }

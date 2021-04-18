@@ -70,6 +70,39 @@ public class FlujoEfectivoDAO {
 
 		return flujos;
 	}
+
+	public List<FlujoEfectivo> getAllFlujoEfectivoMes(int mes) { //retorna todos los registros
+		List<FlujoEfectivo> flujos = new ArrayList<>();
+
+		if (connection != null) {
+			String sql = "SELECT monto,idclasificacion,WEEK(flujoefectivo.fecha, 5) - WEEK(DATE_SUB(flujoefectivo.fecha, INTERVAL DAYOFMONTH(flujoefectivo.fecha) - 1 DAY), 5) + 1 numSemana from flujoefectivo JOIN categoria \n" +
+					"ON flujoefectivo.categoria = categoria.nombre where month(flujoefectivo.fecha) = ?";
+
+			try {
+
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setInt(1,mes);
+				ResultSet results = statement.executeQuery();
+				while (results.next()) {
+
+					float monto = results.getFloat(1);
+					int idClasificacion = results.getInt(2);
+					int numSemana = results.getInt(3);
+
+
+					FlujoEfectivo flu = new FlujoEfectivo(monto,idClasificacion,numSemana);
+
+					flujos.add(flu);
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return flujos;
+	}
 	
 	
 	

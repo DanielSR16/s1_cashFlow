@@ -30,6 +30,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	private static Parent loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../view/"+ fxml + ".fxml"));
 		return fxmlLoader.load();
