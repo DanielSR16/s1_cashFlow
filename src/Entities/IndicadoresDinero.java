@@ -1,21 +1,23 @@
 package Entities;
 
 public class IndicadoresDinero {
-    
+
     private int id;
     private int numSemana;
     private float monto;
     private String asunto;
     private int idTipoIndicador;
+    private int numMes;
     
     public IndicadoresDinero() {}
 
-    public IndicadoresDinero( int numSemana, float monto, String asunto, int idTipoIndicador) {
+    public IndicadoresDinero( int numSemana, float monto, String asunto, int idTipoIndicador,int numMes) {
        
         this.numSemana = numSemana;
         this.monto = monto;
         this.asunto = asunto;
         this.idTipoIndicador = idTipoIndicador;
+        this.numMes=numMes;
     }
 
     public int getId() {return id;}
@@ -37,5 +39,12 @@ public class IndicadoresDinero {
     public int getIdTipoIndicador() {return idTipoIndicador;}
 
     public void setIdTipoIndicador(int idTipoIndicador) {this.idTipoIndicador = idTipoIndicador;}
-           
+
+    public int getNumMes() {
+        return numMes;
+    }
+
+    public void setNumMes(int numMes) {
+        this.numMes = numMes;
+    }
 }

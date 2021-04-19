@@ -3,13 +3,20 @@ package Controller;
 import DAO.IndicadoresDineroDAO;
 import Entities.IndicadoresDinero;
 import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class indicadoresController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class indicadoresController implements Initializable {
 IndicadoresDineroDAO indicadoresDAO = new IndicadoresDineroDAO();
     @FXML
     private TextField semanaCuentaCobrar;
@@ -58,51 +65,68 @@ IndicadoresDineroDAO indicadoresDAO = new IndicadoresDineroDAO();
     //1 cuentas por cobrar
     //2 cuentas por pagar
     //3 banco
-
+    @FXML
+    private ComboBox<String> meses;
 
     @FXML
     void guardarCuentaCobrarOnMuseClicked(MouseEvent event) {
-        if(semanaCuentaCobrar.getLength() > 0 && montoCuentaCobrar.getLength() > 0 && razonCuentaCobrar.getLength() >0){
-            IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaCuentaCobrar.getText()),Float.parseFloat(montoCuentaCobrar.getText()),razonCuentaCobrar.getText(),1);
-            indicadoresDAO.insert(indicadores);
-            semanaCuentaCobrar.clear();
-            montoCuentaCobrar.clear();
-            razonCuentaCobrar.clear();
-            errorCobrar.setText("");
-        }else{
-            errorCobrar.setText("Faltan campos por llenar");
+
+        if(meses.getSelectionModel().isEmpty()){
+            System.out.println("TA vacio chavo");
         }
-
-
+        else {
+            if(semanaCuentaCobrar.getLength() > 0 && montoCuentaCobrar.getLength() > 0 && razonCuentaCobrar.getLength() >0){
+                IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaCuentaCobrar.getText()),Float.parseFloat(montoCuentaCobrar.getText()),razonCuentaCobrar.getText(),1,meses.getSelectionModel().getSelectedIndex()+1);
+                indicadoresDAO.insert(indicadores);
+                semanaCuentaCobrar.clear();
+                montoCuentaCobrar.clear();
+                razonCuentaCobrar.clear();
+                errorCobrar.setText("");
+            }else{
+                errorCobrar.setText("Faltan campos por llenar");
+            }
+        }
     }
 
     @FXML
     void guardarCuentaPagarOnMuseClicked(MouseEvent event) {
-        if(semanaCuentaPagar.getLength() > 0 && montoCuentaPagar.getLength() > 0 && razonCuentaPagar.getLength() >0){
-            IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaCuentaPagar.getText()),Float.parseFloat(montoCuentaPagar.getText()),razonCuentaPagar.getText(),2);
-            indicadoresDAO.insert(indicadores);
-            semanaCuentaPagar.clear();
-            montoCuentaPagar.clear();
-            razonCuentaPagar.clear();
-            errorPagar.setText("");
-        }else{
-            errorPagar.setText("Faltan campos por llenar");
+
+        if(meses.getSelectionModel().isEmpty()){
+            System.out.println("TA vacio chavo");
         }
-
-
+        else {
+            if(semanaCuentaPagar.getLength() > 0 && montoCuentaPagar.getLength() > 0 && razonCuentaPagar.getLength() >0){
+                IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaCuentaPagar.getText()),Float.parseFloat(montoCuentaPagar.getText()),razonCuentaPagar.getText(),2,meses.getSelectionModel().getSelectedIndex()+1);
+                indicadoresDAO.insert(indicadores);
+                semanaCuentaPagar.clear();
+                montoCuentaPagar.clear();
+                razonCuentaPagar.clear();
+                errorPagar.setText("");
+            }else{
+                errorPagar.setText("Faltan campos por llenar");
+            }
+        }
     }
 
     @FXML
     void guardarBancoOnMuseClicked(MouseEvent event) {
-        if(semanaBanco.getLength() > 0 && montoBanco.getLength() > 0 && razonBanco.getLength() >0){
-            IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaBanco.getText()),Float.parseFloat(montoBanco.getText()),razonBanco.getText(),3);
-            indicadoresDAO.insert(indicadores);
-            semanaBanco.clear();
-            montoBanco.clear();
-            razonBanco.clear();
-            errorBanco.setText("");
-        }else{
-            errorBanco.setText("Faltan campos por llenar");
+
+        if(meses.getSelectionModel().isEmpty()){
+            System.out.println("TA vacio chavo");
+        }
+        else {
+
+            if(semanaBanco.getLength() > 0 && montoBanco.getLength() > 0 && razonBanco.getLength() >0){
+                IndicadoresDinero indicadores = new IndicadoresDinero(Integer.parseInt(semanaBanco.getText()),Float.parseFloat(montoBanco.getText()),razonBanco.getText(),3,meses.getSelectionModel().getSelectedIndex()+1);
+                indicadoresDAO.insert(indicadores);
+                semanaBanco.clear();
+                montoBanco.clear();
+                razonBanco.clear();
+                errorBanco.setText("");
+            }else{
+                errorBanco.setText("Faltan campos por llenar");
+            }
+
         }
 
 
@@ -113,4 +137,11 @@ IndicadoresDineroDAO indicadoresDAO = new IndicadoresDineroDAO();
         Main.secondStage.close();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> flujo =  FXCollections.observableArrayList();
+        flujo.addAll("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiempbre","Octubre","Noviembre","Diciembre");
+
+        meses.setItems(flujo);
+    }
 }

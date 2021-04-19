@@ -81,8 +81,8 @@ public class flujoController implements Initializable {
 
         if(checkBoxEntrada.isSelected()){
             ObservableList<String> categoriaBOX = FXCollections.observableArrayList();
-            for (int i = 0; i < categoriadao.getCategorias(3,4).size(); i++) {
-                categoriaBOX.add(categoriadao.getCategorias(3,4).get(i).getNombre());
+            for (int i = 0; i < categoriadao.getCategorias(2,3).size(); i++) {
+                categoriaBOX.add(categoriadao.getCategorias(2,3).get(i).getNombre());
             }
             comboBoxCategoria.setItems(categoriaBOX);
         }
@@ -96,8 +96,8 @@ public class flujoController implements Initializable {
         }
             if(checkBoxSalida.isSelected()){
                 ObservableList<String> categoriaBOX = FXCollections.observableArrayList();
-                for (int i = 0; i < categoriadao.getCategorias(1,2).size(); i++) {
-                    categoriaBOX.add(categoriadao.getCategorias(1,2).get(i).getNombre());
+                for (int i = 0; i < categoriadao.getCategorias(1).size(); i++) {
+                    categoriaBOX.add(categoriadao.getCategorias(1).get(i).getNombre());
                 }
                 comboBoxCategoria.setItems(categoriaBOX);
             }

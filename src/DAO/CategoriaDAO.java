@@ -148,6 +148,32 @@ public class CategoriaDAO {
 		return categoria;
 	}
 
+	public List<Categoria> getCategorias(int id1) { //retorna todos los registros
+		List<Categoria> categoria = new ArrayList<>();
+
+		if (connection != null) {
+			String sql = "\n" +
+					"select id,nombre from categoria where idclasificacion in (?);";
+
+			try {
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setInt(1, id1);
+				ResultSet results = statement.executeQuery();
+				while (results.next()) {
+					int id = results.getInt(1);
+					String nombre = results.getString(2);
+					Categoria cat = new Categoria(id,nombre);
+					categoria.add(cat);
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return categoria;
+	}
 
 
 

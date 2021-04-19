@@ -17,7 +17,7 @@ public class IndicadoresDineroDAO {
     public boolean insert(IndicadoresDinero indicadoresdinero) {
         boolean resultado = false;
         if (connection != null) {
-            String sql = "insert into indicadoresdinero (numsemana,monto,asunto,idtipoindicador) values (?,?,?,?)";
+            String sql = "insert into indicadoresdinero (numsemana,monto,asunto,idtipoindicador,numMes) values (?,?,?,?,?)";
 
             try {
                 PreparedStatement statement = connection.prepareStatement(sql);
@@ -25,6 +25,7 @@ public class IndicadoresDineroDAO {
                 statement.setFloat(2, indicadoresdinero.getMonto());
                 statement.setString(3,indicadoresdinero.getAsunto());
                 statement.setInt(4,indicadoresdinero.getIdTipoIndicador());
+                statement.setInt(5,indicadoresdinero.getNumMes());
                 if (statement.executeUpdate() == ACCEPT)
                     resultado = true;
             } catch (SQLException e) {

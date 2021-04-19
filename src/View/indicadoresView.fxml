@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -82,5 +83,6 @@
          </image>
       </ImageView>
       <Ellipse fill="#84b1c6" layoutX="596.0" layoutY="610.0" nodeOrientation="LEFT_TO_RIGHT" radiusX="28.0" radiusY="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <ComboBox fx:id="meses" layoutX="450.0" layoutY="31.0" prefHeight="38.0" prefWidth="150.0" promptText="Mes" />
    </children>
 </AnchorPane>
