@@ -141,7 +141,6 @@ IndicadoresDineroDAO indicadoresDAO = new IndicadoresDineroDAO();
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> flujo =  FXCollections.observableArrayList();
         flujo.addAll("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiempbre","Octubre","Noviembre","Diciembre");
-
         meses.setItems(flujo);
     }
 }

@@ -6,6 +6,7 @@ import Entities.FlujoEfectivo;
 import Entities.IndicadoresDinero;
 import Entities.Utilidad;
 import Model.Contador;
+import Model.Informe;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,13 +29,14 @@ public class reporteController implements Initializable {
     Contador contador = new Contador();
     FlujoEfectivoDAO flujoEfectivoDAO = new FlujoEfectivoDAO();
     UtilidadDAO utilidadDAO = new UtilidadDAO();
+    Informe informe = new Informe();
 
     @FXML
     void seleccionarClicked(MouseEvent event) {
         int semanasMax = 1;
         List<FlujoEfectivo> flujosMes = flujoEfectivoDAO.getAllFlujoEfectivoMes(meses.getSelectionModel().getSelectedIndex()+1);
 
-        //FLUJOS DE EFECTIVO
+//        FLUJOS DE EFECTIVO
 
         for (int i = 0; i < flujosMes.size(); i++) {
 
@@ -95,7 +97,8 @@ public class reporteController implements Initializable {
                         margen = contador.calcularMargen(ganancias,ingresosTotaleClas+ventasTotales);
 
                         Utilidad utilidad = new Utilidad(egresoTotal,ingresosTotaleClas+ventasTotales,margen,ganancias,j+1,ventasTotales,ingresosTotaleClas,meses.getSelectionModel().getSelectedIndex()+1);
-                        utilidadDAO.insert(utilidad);
+                        System.out.println(utilidad);
+                       // utilidadDAO.insert(utilidad);
                         break;
                     }
 
@@ -114,10 +117,11 @@ public class reporteController implements Initializable {
             }
 
 
+//        System.out.println(egresos);
+//        System.out.println(ingresos);
+//        System.out.println(ventas);
 
-
-
-
+            informe.informe(String.valueOf(meses.getSelectionModel().getSelectedIndex()+1));
 
     }
 

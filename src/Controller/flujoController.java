@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
@@ -166,8 +167,8 @@ public class flujoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        LocalDate localDate = Instant.ofEpochMilli(sqlDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-        fecha.setValue(localDate);
+        LocalDate local = Instant.ofEpochMilli(sqlDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        fecha.setValue(local);
         ObservableList<FlujoEfectivo> flujo =  FXCollections.observableArrayList();
         fechaColum.setCellValueFactory(new PropertyValueFactory<FlujoEfectivo,Date>("fecha"));
         descripcionColum.setCellValueFactory(new PropertyValueFactory<FlujoEfectivo,String>("descripcion"));
