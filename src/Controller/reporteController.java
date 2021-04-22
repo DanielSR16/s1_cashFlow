@@ -59,9 +59,10 @@ public class reporteController implements Initializable {
             cont = 0;
         }
 
-        List<FlujoEfectivo> egresos =new ArrayList<>();
-        List<FlujoEfectivo> ingresos =new ArrayList<>();
-        List<FlujoEfectivo> ventas =new ArrayList<>();
+        List<FlujoEfectivo> gastoAOC =new ArrayList<>();  //GASTO-AOC
+        List<FlujoEfectivo> deposito =new ArrayList<>(); //DEPOSITO
+        List<FlujoEfectivo> efectivo =new ArrayList<>(); //EFECTIVO
+        List<FlujoEfectivo> costoVenta =new ArrayList<>();//COSTO-VENTA
 
         for (int i = 0; i < semanasMax; i++) {
             for (int j = 0; j < flujosMes.size(); j++) {
@@ -69,13 +70,16 @@ public class reporteController implements Initializable {
                 if(flujoEfectivosSemanales[i][j]!=null){
 
                     if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 3 ){
-                        ingresos.add(flujoEfectivosSemanales[i][j]);
+                        deposito.add(flujoEfectivosSemanales[i][j]);
                     }
                     if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 2){
-                        ventas.add(flujoEfectivosSemanales[i][j]);
+                        efectivo.add(flujoEfectivosSemanales[i][j]);
+                    }
+                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 4){
+                        costoVenta.add(flujoEfectivosSemanales[i][j]);
                     }
                     else {
-                        egresos.add(flujoEfectivosSemanales[i][j]);
+                        gastoAOC.add(flujoEfectivosSemanales[i][j]);
                     }
                 }
             }

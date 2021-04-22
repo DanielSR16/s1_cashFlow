@@ -121,7 +121,7 @@ public class categoriaController implements Initializable {
             cat.addAll(categoriaDAO.getAllCategoria());
             tabla.setItems(cat);
 
-            System.out.println("HOLA PTO");
+
             textFliedCategoria.clear();
             textFieldSubCategoria.clear();
         }
@@ -169,7 +169,7 @@ public class categoriaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //llenado del comboBox
         ObservableList<String> clasificacionesView = FXCollections.observableArrayList();
-        for (int i = 0; i < clasificacionDAO.getAllClasificacion().size(); i++) {
+        for (int i = 0; i < 4; i++) {
             clasificacionesView.addAll(clasificacionDAO.getAllClasificacion().get(i).getNombre());
         }
         comboBoxClasificacion.setItems(clasificacionesView);
