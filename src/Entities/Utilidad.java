@@ -8,31 +8,24 @@ public class Utilidad {
     private int margen;
     private float monto;
     private int semana;
-    private float totalVenta;
-    private float totalIngresoClas;
+    private float efectivo;
+    private float depocito;
+    private float gastoAOC;
+    private float costoVenta;
     private int numMes;
    
     public Utilidad() {}
 
-    public Utilidad(int id, float egresoTotal, float ingresoTotal, int margen, float monto, int semana, float totalVenta, float totalIngresoClas) {
-        this.id = id;
+    public Utilidad(float egresoTotal, float ingresoTotal, int margen, float monto, int semana, float efectivo, float depocito, float gastoAOC, float costoVenta, int numMes) {
         this.egresoTotal = egresoTotal;
         this.ingresoTotal = ingresoTotal;
         this.margen = margen;
         this.monto = monto;
         this.semana = semana;
-        this.totalVenta = totalVenta;
-        this.totalIngresoClas = totalIngresoClas;
-    }
-
-    public Utilidad(float egresoTotal, float ingresoTotal, int margen, float monto, int semana, float totalVenta, float totalIngresoClas, int numMes) {
-        this.egresoTotal = egresoTotal;
-        this.ingresoTotal = ingresoTotal;
-        this.margen = margen;
-        this.monto = monto;
-        this.semana = semana;
-        this.totalVenta = totalVenta;
-        this.totalIngresoClas = totalIngresoClas;
+        this.efectivo = efectivo;
+        this.depocito = depocito;
+        this.gastoAOC = gastoAOC;
+        this.costoVenta = costoVenta;
         this.numMes = numMes;
     }
 
@@ -44,20 +37,37 @@ public class Utilidad {
         this.id = id;
     }
 
-    public float getTotalVenta() {
-        return totalVenta;
+
+    public float getEfectivo() {
+        return efectivo;
     }
 
-    public void setTotalVenta(float totalVenta) {
-        this.totalVenta = totalVenta;
+    public void setEfectivo(float efectivo) {
+        this.efectivo = efectivo;
     }
 
-    public float getTotalIngresoClas() {
-        return totalIngresoClas;
+    public float getDepocito() {
+        return depocito;
     }
 
-    public void setTotalIngresoClas(float totalIngresoClas) {
-        this.totalIngresoClas = totalIngresoClas;
+    public void setDepocito(float depocito) {
+        this.depocito = depocito;
+    }
+
+    public float getGastoAOC() {
+        return gastoAOC;
+    }
+
+    public void setGastoAOC(float gastoAOC) {
+        this.gastoAOC = gastoAOC;
+    }
+
+    public float getCostoVenta() {
+        return costoVenta;
+    }
+
+    public void setCostoVenta(float costoVenta) {
+        this.costoVenta = costoVenta;
     }
 
     public float getEgresoTotal() {return egresoTotal;}
@@ -96,8 +106,7 @@ public class Utilidad {
                 ", margen=" + margen +
                 ", monto=" + monto +
                 ", semana=" + semana +
-                ", totalVenta=" + totalVenta +
-                ", totalIngresoClas=" + totalIngresoClas +
+
                 '}';
     }
 }

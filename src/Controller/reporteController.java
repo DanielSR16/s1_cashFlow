@@ -33,18 +33,11 @@ public class reporteController implements Initializable {
 
     @FXML
     void seleccionarClicked(MouseEvent event) {
-        int semanasMax = 1;
+        int semanasMax = 5;
         List<FlujoEfectivo> flujosMes = flujoEfectivoDAO.getAllFlujoEfectivoMes(meses.getSelectionModel().getSelectedIndex()+1);
 
 //        FLUJOS DE EFECTIVO
 
-        for (int i = 0; i < flujosMes.size(); i++) {
-
-            if (flujosMes.get(i).getNumSemana() > semanasMax){
-                semanasMax = flujosMes.get(i).getNumSemana();
-            }
-
-        }
 
         FlujoEfectivo [][] flujoEfectivosSemanales = new FlujoEfectivo[semanasMax][flujosMes.size()];
 
@@ -59,37 +52,53 @@ public class reporteController implements Initializable {
             cont = 0;
         }
 
-        List<FlujoEfectivo> gastoAOC =new ArrayList<>();  //GASTO-AOC
-        List<FlujoEfectivo> deposito =new ArrayList<>(); //DEPOSITO
-        List<FlujoEfectivo> efectivo =new ArrayList<>(); //EFECTIVO
-        List<FlujoEfectivo> costoVenta =new ArrayList<>();//COSTO-VENTA
+        System.out.println("Flujos de efectivo semanales: ");
 
         for (int i = 0; i < semanasMax; i++) {
+
             for (int j = 0; j < flujosMes.size(); j++) {
-
-                if(flujoEfectivosSemanales[i][j]!=null){
-
-                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 3 ){
-                        deposito.add(flujoEfectivosSemanales[i][j]);
-                    }
-                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 2){
-                        efectivo.add(flujoEfectivosSemanales[i][j]);
-                    }
-                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 4){
-                        costoVenta.add(flujoEfectivosSemanales[i][j]);
-                    }
-                    else {
-                        gastoAOC.add(flujoEfectivosSemanales[i][j]);
-                    }
+                if(flujoEfectivosSemanales[i][j]==null){
+                    break;
                 }
+                System.out.print(flujoEfectivosSemanales[i][j]);
+
             }
+            System.out.println();
         }
+
+
+//        List<FlujoEfectivo> gastoAOC =new ArrayList<>();  //GASTO-AOC
+//        List<FlujoEfectivo> deposito =new ArrayList<>(); //DEPOSITO
+//        List<FlujoEfectivo> efectivo =new ArrayList<>(); //EFECTIVO
+//        List<FlujoEfectivo> costoVenta =new ArrayList<>();//COSTO-VENTA
+//
+//        for (int i = 0; i < semanasMax; i++) {
+//            for (int j = 0; j < flujosMes.size(); j++) {
+//
+//                if(flujoEfectivosSemanales[i][j]!=null){
+//
+//                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 3 ){
+//                        deposito.add(flujoEfectivosSemanales[i][j]);
+//                    }
+//                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 2){
+//                        efectivo.add(flujoEfectivosSemanales[i][j]);
+//                    }
+//                    if(flujoEfectivosSemanales[i][j].getIdClasificacion() == 4){
+//                        costoVenta.add(flujoEfectivosSemanales[i][j]);
+//                    }
+//                    else {
+//                        gastoAOC.add(flujoEfectivosSemanales[i][j]);
+//                    }
+//                }
+//            }
+//        }
 
             for (int j = 0; j < semanasMax; j++) {
 
-                float egresoTotal = 0;
-                float ingresosTotaleClas = 0;
-                float ventasTotales = 0;
+                float gastoAOC = 0;
+                float costoVenta =0;
+                float efectivo = 0;
+                float deposito = 0;
                 float ganancias = 0;
                 int margen = 0;
 
@@ -97,35 +106,35 @@ public class reporteController implements Initializable {
 
                     if(flujoEfectivosSemanales[j][i] == null){
 
-                        ganancias = contador.calcularGanancia(egresoTotal,ingresosTotaleClas+ventasTotales);
-                        margen = contador.calcularMargen(ganancias,ingresosTotaleClas+ventasTotales);
+                        ganancias = contador.calcularGanancia(costoVenta+gastoAOC,efectivo+deposito);
+                        margen = contador.calcularMargen(ganancias,efectivo+deposito);
 
-                        Utilidad utilidad = new Utilidad(egresoTotal,ingresosTotaleClas+ventasTotales,margen,ganancias,j+1,ventasTotales,ingresosTotaleClas,meses.getSelectionModel().getSelectedIndex()+1);
-                        System.out.println(utilidad);
-                       // utilidadDAO.insert(utilidad);
+                        Utilidad utilidad = new Utilidad(costoVenta+gastoAOC,efectivo+deposito,margen,ganancias,j+1,efectivo,deposito,gastoAOC,costoVenta,meses.getSelectionModel().getSelectedIndex()+1);
+                        //System.out.println(utilidad);
+                        //utilidadDAO.insert(utilidad);
                         break;
                     }
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 1){
-                        egresoTotal = egresoTotal + flujoEfectivosSemanales[j][i].getMonto();
+                        gastoAOC = gastoAOC + flujoEfectivosSemanales[j][i].getMonto();
                     }
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 2){
-                        ventasTotales = ventasTotales + flujoEfectivosSemanales[j][i].getMonto();
+                        efectivo = efectivo + flujoEfectivosSemanales[j][i].getMonto();
                     }
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 3){
-                        ingresosTotaleClas = ingresosTotaleClas + flujoEfectivosSemanales[j][i].getMonto();
+                        deposito = deposito + flujoEfectivosSemanales[j][i].getMonto();
+                    }
+
+                    if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 4){
+                        costoVenta = costoVenta + flujoEfectivosSemanales[j][i].getMonto();
                     }
                 }
             }
 
 
-//        System.out.println(egresos);
-//        System.out.println(ingresos);
-//        System.out.println(ventas);
-
-            informe.informe(String.valueOf(meses.getSelectionModel().getSelectedIndex()+1));
+            //informe.informe(String.valueOf(meses.getSelectionModel().getSelectedIndex()+1));
 
     }
 
