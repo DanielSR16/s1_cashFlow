@@ -9,9 +9,9 @@ public class Connector {
 public Connection getConnectionMySql() {
 		//modifiquen la conexion con sus datos
 		Connection connection = null;
-		String url = "jdbc:mysql://localhost:3306/cashflow?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost:3307/cashflow?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
 		String user = "root";
-		String password = "1234";
+		String password = "danielsr";
 		
 		try {
 			connection = DriverManager.getConnection(url, user, password);

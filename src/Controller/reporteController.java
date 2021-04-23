@@ -112,11 +112,13 @@ public class reporteController implements Initializable {
                         Utilidad utilidad = new Utilidad(costoVenta+gastoAOC,efectivo+deposito,margen,ganancias,j+1,efectivo,deposito,gastoAOC,costoVenta,meses.getSelectionModel().getSelectedIndex()+1);
                         //System.out.println(utilidad);
                         //utilidadDAO.insert(utilidad);
+                        System.out.println("Egresos totales = "+ (costoVenta + gastoAOC));
                         break;
                     }
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 1){
                         gastoAOC = gastoAOC + flujoEfectivosSemanales[j][i].getMonto();
+                        System.out.println("gastoAOC = " + flujoEfectivosSemanales[j][i].getMonto());
                     }
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 2){
@@ -129,12 +131,13 @@ public class reporteController implements Initializable {
 
                     if(flujoEfectivosSemanales[j][i].getIdClasificacion() == 4){
                         costoVenta = costoVenta + flujoEfectivosSemanales[j][i].getMonto();
+                        System.out.println("COSTO VENTA = " + flujoEfectivosSemanales[j][i].getMonto());
                     }
                 }
             }
 
 
-            //informe.informe(String.valueOf(meses.getSelectionModel().getSelectedIndex()+1));
+            informe.informe(String.valueOf(meses.getSelectionModel().getSelectedIndex()+1));
 
     }
 

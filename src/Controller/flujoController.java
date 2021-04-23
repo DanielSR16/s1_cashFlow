@@ -82,8 +82,8 @@ public class flujoController implements Initializable {
 
         if(checkBoxEntrada.isSelected()){
             ObservableList<String> categoriaBOX = FXCollections.observableArrayList();
-            for (int i = 0; i < categoriadao.getCategorias(3,4).size(); i++) {
-                categoriaBOX.add(categoriadao.getCategorias(3,4).get(i).getNombre());
+            for (int i = 0; i < categoriadao.getCategorias(2,3).size(); i++) {
+                categoriaBOX.add(categoriadao.getCategorias(2,3).get(i).getNombre());
             }
             comboBoxCategoria.setItems(categoriaBOX);
         }
@@ -97,8 +97,8 @@ public class flujoController implements Initializable {
         }
             if(checkBoxSalida.isSelected()){
                 ObservableList<String> categoriaBOX = FXCollections.observableArrayList();
-                for (int i = 0; i < categoriadao.getCategorias(1,2).size(); i++) {
-                    categoriaBOX.add(categoriadao.getCategorias(1,2).get(i).getNombre());
+                for (int i = 0; i < categoriadao.getCategorias(1,4).size(); i++) {
+                    categoriaBOX.add(categoriadao.getCategorias(1,4).get(i).getNombre());
                 }
                 comboBoxCategoria.setItems(categoriaBOX);
             }
@@ -130,7 +130,7 @@ public class flujoController implements Initializable {
 
     @FXML
     void guardarClicked(MouseEvent event) {
-        if(textFieldMonto.getLength()>0 && textFieldDescripcion.getLength()>0 && comboBoxSubCategoria1.getSelectionModel().isEmpty() == false && comboBoxCategoria.getSelectionModel().isEmpty() == false){
+        if(textFieldMonto.getLength()>0 && textFieldDescripcion.getLength()>0 && comboBoxCategoria.getSelectionModel().isEmpty() == false){
             Date date = Date.valueOf(LocalDate.of(fecha.getValue().getYear(), fecha.getValue().getMonth(), fecha.getValue().getDayOfMonth()));
 
             FlujoEfectivo  flujoefectivo = new FlujoEfectivo(Float.parseFloat(textFieldMonto.getText()),textFieldDescripcion.getText(),date,comboBoxCategoria.getSelectionModel().getSelectedItem(),comboBoxSubCategoria1.getSelectionModel().getSelectedItem());

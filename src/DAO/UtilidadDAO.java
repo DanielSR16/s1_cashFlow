@@ -17,7 +17,7 @@ public class UtilidadDAO {
     public boolean insert(Utilidad utilidad) {
         boolean resultado = false;
         if (connection != null) {
-            String sql = "insert into utilidad (totalingresos,totalegresos,semana,monto,margen,totalVentas,totalIngresosClas,numMes) values (?,?,?,?,?,?,?,?);";
+            String sql = "insert into utilidad (totalingresos,totalegresos,semana,monto,margen,efectivo,deposito,gastoAOC,costoVenta,numMes) values (?,?,?,?,?,?,?,?,?,?);";
             try {
                 PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -26,9 +26,11 @@ public class UtilidadDAO {
                 statement.setInt(3,utilidad.getSemana());
                 statement.setFloat(4,utilidad.getMonto());
                 statement.setInt(5,utilidad.getMargen());
-                statement.setFloat(6,utilidad.getTotalVenta());
-                statement.setFloat(7,utilidad.getTotalIngresoClas());
-                statement.setInt(8,utilidad.getNumMes());
+                statement.setFloat(6,utilidad.getEfectivo());
+                statement.setFloat(7,utilidad.getDepocito());
+                statement.setFloat(8,utilidad.getGastoAOC());
+                statement.setFloat(9,utilidad.getCostoVenta());
+                statement.setInt(10,utilidad.getNumMes());
                 if (statement.executeUpdate() == ACCEPT)
                     resultado = true;
             } catch (SQLException e) {
